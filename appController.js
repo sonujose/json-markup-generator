@@ -6,6 +6,7 @@ app.controller('mainAppCtrl', function($scope,$sce) {
     $scope.newContentList = [];
     $scope.generatedJsonContent = JSON.stringify($scope.newContentList);
     $scope.isEditMode = false;
+    $scope.iteminitialId = 1200; 
 
     $scope.scrollToBottom = function() {
         window.scrollTo(0,document.body.scrollHeight);
@@ -15,7 +16,7 @@ app.controller('mainAppCtrl', function($scope,$sce) {
     };
     $scope.addNewItem = function() {        
         var currentLength = $scope.newContentList.length;
-        var object = {'id': currentLength + 1, 'type' : $scope.newItem.type, 'data' : $scope.newItem.data};
+        var object = {'id': $scope.iteminitialId++, 'type' : $scope.newItem.type, 'data' : $scope.newItem.data};
         $scope.newContentList.push(object);
         $scope.generatedJsonContent = JSON.stringify($scope.newContentList, undefined, 2);
         $scope.resetItem();
