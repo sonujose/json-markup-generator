@@ -56,3 +56,18 @@
 .dn-mrgn-t-b-10px {
     margin: 10px;
 }
+.preview-item {
+    cursor: pointer;
+    padding: 10px;
+}
+.preview-item:hover {
+    border: 1px solid #333;
+}
+.preview-item.selected-item {
+    background: #d4d4d4;
+    border: 1px solid #999;
+}
+.less-opacity {
+    opacity: 0.5;
+    color: #666;
+}

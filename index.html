@@ -28,7 +28,7 @@
     </div>
     <div class="header-banner">
       <div class="container">
-        <h2 class="header-banner-title">Welcome</h2>
+        <h2 class="header-banner-title">Welcome to Editors Dashboard</h2>
         <h4 class="header-banner-subtitle"></h4>
       </div>
     </div>
@@ -47,26 +47,40 @@
             
           <input type="text" style="width: 500px; margin: 10px" placeholder="Enter url.." ng-model="newItem.data" />
           </div>
-          <button ng-click="addNewItem()">Add Content</button>
+          <button ng-click="addNewItem()" ng-hide="isEditMode">Add Content</button>
+          <button ng-click="UpdateItem()" ng-show="isEditMode">Update Content</button>
+          <!--<button ng-click="deleteItem()" ng-show="isEditMode">Delete Item</button>-->
+          
         </form>
       </div>
       <div class="col-sm-12" class="dn-mrgn-t-b-10px">
-        <h2>It Looks like this..</h2>
+        <h2>Have a preview</h2>
+        <div ng-hide="newContentList.length > 0">
+          <h4 class="less-opacity">No Content has been written</h4>
+        </div>
         <div ng-repeat="item in newContentList" ng-switch on="item.type">
-          <div ng-switch-when="para" class="dn-mrgn-t-b-10px">
+          <div ng-switch-when="para" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
             <p>{{item.data}}</p>
           </div>
-          <div ng-switch-when="para-html" class="dn-mrgn-t-b-10px">
-            <p>{{item.data}}</p>
+          <div ng-switch-when="para-html" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
+            <div ng-bind-html="trustContentAsHtml(item.data)"></div>
           </div>
-          <div ng-switch-when="image" class="dn-mrgn-t-b-10px">
+          <div ng-switch-when="image" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
             <img ng-src="{{item.data}}" style="max-width: 800px;"/>
           </div>
         </div>
       </div>
       <div class="col-sm-12" class="dn-mrgn-t-b-10px">
         <h2>Generated Json</h2>
-        <div ng-bind="generatedJsonContent" ng-show="newContentList.length > 0"></div>
+        <div ng-show="newContentList.length > 0" class="dn-mrgn-t-b-10px">
+          <button ng-click="resetEntireList()">Clear All</button>
+        </div>        
+        <div ng-show="newContentList.length > 0">
+          <pre ng-bind="generatedJsonContent"></pre>
+        </div>
+        <div ng-hide="newContentList.length > 0">
+          <h4 class="less-opacity">No Content has been written</h4>
+        </div>
       </div>      
       
     </div>
