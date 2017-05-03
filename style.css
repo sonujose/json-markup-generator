@@ -1,0 +1,58 @@
+.header {
+    background: #E64759;
+    height: 50px;
+    width: 100%;
+}
+.header-title {
+    color: #fff;
+    font-size: 22px;
+    cursor: pointer;
+    padding-top: 12px;
+}
+.header-banner {
+    height: 200px;
+    background: #434857;
+    width: 100%;
+}
+.header-banner-title {
+    margin-top: 30px;
+    color: #fff;
+    font-size: 40px;
+}
+.header-banner-subtitle {
+    margin-top: 15px;
+    color: #fff;
+}
+.main-content {
+    margin-top: 30px;
+    background: #e4e4e4;
+}
+.trash-main {
+    height: 180px;
+    margin: 15px 0;
+}
+.trash-container {
+    height: 180px;
+    padding: 15px;
+    color: #fff;
+}
+.red-stat{
+    background: #E64759;
+}
+.yellow-stat {
+    background: #E4D836;
+}
+.green-stat {
+    background: #1BC98E;
+}
+.trash-status {
+    font-size: 45px;
+}
+.trash-btn {
+    margin-top: 10px;
+    float: right;
+    border-radius: 0;
+}
+.dn-mrgn-t-b-10px {
+    margin: 10px;
+}

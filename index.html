@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>DN-Renderer</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!--cdn Links-->
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>-->
+  <!--Asset Links-->
+  <link rel="stylesheet" href="Assets/bootstrap.min.css">
+  <script src="Assets/jquery.min.js"></script>
+  <script src="Assets/bootstrap.min.js"></script>
+  <script src="Assets/angular.min.js"></script>
+  <!--App References-->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+  <div ng-app="myApp" ng-controller="mainAppCtrl">
+    <div class="header container">
+      <div class="header-title">DN-Renderer</div>
+    </div>
+    <div class="header-banner">
+      <div class="container">
+        <h2 class="header-banner-title">Welcome</h2>
+        <h4 class="header-banner-subtitle"></h4>
+      </div>
+    </div>
+    <div class="container main-container" style="margin-top: 70px; margin-bottom:90px;">
+      <div class="col-sm-12" class="dn-mrgn-t-b-10px">
+        <h2 class="dn-mrgn-t-b-10px">Add your contents here</h2>
+        <form name="typeSelectForm" class="dn-mrgn-t-b-10px">
+          <label><input type="radio" name="contentType" ng-model="newItem.type" value="para">Paragraph</label>
+          <label><input type="radio" name="contentType" ng-model="newItem.type" value="para-html">Paragraph with html</label>
+          <label><input type="radio" name="contentType" ng-model="newItem.type" value="image">Image</label>
+          <div ng-hide="newItem.type === 'image'">
+            
+          <textarea rows="12" cols="150" ng-model="newItem.data" placeholder="Enter content.."></textarea>
+          </div>
+          <div ng-show="newItem.type === 'image'">
+            
+          <input type="text" style="width: 500px; margin: 10px" placeholder="Enter url.." ng-model="newItem.data" />
+          </div>
+          <button ng-click="addNewItem()">Add Content</button>
+        </form>
+      </div>
+      <div class="col-sm-12" class="dn-mrgn-t-b-10px">
+        <h2>It Looks like this..</h2>
+        <div ng-repeat="item in newContentList" ng-switch on="item.type">
+          <div ng-switch-when="para" class="dn-mrgn-t-b-10px">
+            <p>{{item.data}}</p>
+          </div>
+          <div ng-switch-when="para-html" class="dn-mrgn-t-b-10px">
+            <p>{{item.data}}</p>
+          </div>
+          <div ng-switch-when="image" class="dn-mrgn-t-b-10px">
+            <img ng-src="{{item.data}}" style="max-width: 800px;"/>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-12" class="dn-mrgn-t-b-10px">
+        <h2>Generated Json</h2>
+        <div ng-bind="generatedJsonContent" ng-show="newContentList.length > 0"></div>
+      </div>      
+      
+    </div>
+  </div>
+  <!--Main Controller-->
+  <script src="appController.js"></script>
+</body>
+
+</html>
