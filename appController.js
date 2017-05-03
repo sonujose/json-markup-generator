@@ -32,11 +32,11 @@ app.controller('mainAppCtrl', function($scope,$sce) {
         $scope.isEditMode = false;
         $scope.selectedItem = {};
         $scope.resetItem();
-    } 
+    }; 
 
     $scope.trustContentAsHtml = function(data) {
         return $sce.trustAsHtml(data);
-    }
+    };
 
     $scope.editContent = function (dataVal) {
         $scope.newContentList.some(function(item){
@@ -48,12 +48,24 @@ app.controller('mainAppCtrl', function($scope,$sce) {
         
         $scope.newItem = $scope.selectedItem;
         $scope.isEditMode = true;
-    }
+    };
 
     $scope.resetEntireList = function() {
         $scope.newContentList = [];
         $scope.generatedJsonContent = JSON.stringify($scope.newContentList, undefined, 2);
         $scope.resetItem();
-    }
+        $scope.isEditMode = false;
+    };
+
+    $scope.deleteItem = function() {
+        var index = $scope.newContentList.findIndex(function(x){
+            return x.id == $scope.selectedItem.id;
+        });
+        $scope.newContentList.splice(index, 1);
+        $scope.selectedItem = {};
+        $scope.generatedJsonContent = JSON.stringify($scope.newContentList, undefined, 2);
+        $scope.resetItem();
+        $scope.isEditMode = false;
+    };
 
 });

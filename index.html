@@ -40,17 +40,15 @@
           <label><input type="radio" name="contentType" ng-model="newItem.type" value="para-html">Paragraph with html</label>
           <label><input type="radio" name="contentType" ng-model="newItem.type" value="image">Image</label>
           <div ng-hide="newItem.type === 'image'">
-            
-          <textarea rows="12" cols="150" ng-model="newItem.data" placeholder="Enter content.."></textarea>
+            <textarea rows="12" cols="150" style="width: 100%; margin: 10px 0" ng-model="newItem.data" placeholder="Enter content.."></textarea>
           </div>
           <div ng-show="newItem.type === 'image'">
-            
-          <input type="text" style="width: 500px; margin: 10px" placeholder="Enter url.." ng-model="newItem.data" />
+            <input type="text" style="width: 100%; margin: 10px 0" placeholder="Enter url.." ng-model="newItem.data" />
           </div>
           <button ng-click="addNewItem()" ng-hide="isEditMode">Add Content</button>
           <button ng-click="UpdateItem()" ng-show="isEditMode">Update Content</button>
           <!--<button ng-click="deleteItem()" ng-show="isEditMode">Delete Item</button>-->
-          
+
         </form>
       </div>
       <div class="col-sm-12" class="dn-mrgn-t-b-10px">
@@ -59,14 +57,26 @@
           <h4 class="less-opacity">No Content has been written</h4>
         </div>
         <div ng-repeat="item in newContentList" ng-switch on="item.type">
-          <div ng-switch-when="para" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
+          <div ng-switch-when="para" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}"
+            ng-click="editContent(item.id)">
+            <div ng-show="selectedItem.id === item.id" class="item-delete" ng-click="deleteItem()">
+              <button>Delete</button>
+            </div>
             <p>{{item.data}}</p>
           </div>
-          <div ng-switch-when="para-html" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
+          <div ng-switch-when="para-html" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}"
+            ng-click="editContent(item.id)">
+            <div ng-show="selectedItem.id === item.id" class="item-delete" ng-click="deleteItem()">
+              <button>Delete</button>
+            </div>
             <div ng-bind-html="trustContentAsHtml(item.data)"></div>
           </div>
-          <div ng-switch-when="image" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}" ng-click="editContent(item.id)">
-            <img ng-src="{{item.data}}" style="max-width: 800px;"/>
+          <div ng-switch-when="image" class="dn-mrgn-t-b-10px preview-item" ng-class="{'selected-item' : selectedItem.id === item.id}"
+            ng-click="editContent(item.id)">
+            <div ng-show="selectedItem.id === item.id" class="item-delete" ng-click="deleteItem()">
+              <button>Delete</button>
+            </div>
+            <img ng-src="{{item.data}}" style="max-width: 800px;" />
           </div>
         </div>
       </div>
@@ -74,15 +84,15 @@
         <h2>Generated Json</h2>
         <div ng-show="newContentList.length > 0" class="dn-mrgn-t-b-10px">
           <button ng-click="resetEntireList()">Clear All</button>
-        </div>        
+        </div>
         <div ng-show="newContentList.length > 0">
           <pre ng-bind="generatedJsonContent"></pre>
         </div>
         <div ng-hide="newContentList.length > 0">
           <h4 class="less-opacity">No Content has been written</h4>
         </div>
-      </div>      
-      
+      </div>
+
     </div>
   </div>
   <!--Main Controller-->

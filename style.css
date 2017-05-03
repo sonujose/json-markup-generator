@@ -59,6 +59,7 @@
 .preview-item {
     cursor: pointer;
     padding: 10px;
+    border: 1px solid #fff;
 }
 .preview-item:hover {
     border: 1px solid #333;
@@ -70,4 +71,8 @@
 .less-opacity {
     opacity: 0.5;
     color: #666;
+}
+.item-delete {
+    position: absolute;
+    right: 0;
 }
